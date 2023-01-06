@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.lms-label{
+    @apply text-gray-700 block text-xs uppercase font-bold mb-2 cursor-pointer
+}
+
+.lms-input{
+    @apply w-full border border-gray-300 px-4 py-3 leading-tight block text-gray-700 appearance-none rounded
+}
+
+.lms-btn{
+    @apply bg-blue-500 text-white py-2 px-3 text-lg rounded-md text-center
+}
+
+
+.tableDesign tr:nth-child(odd){
+    @apply bg-gray-200;
+}

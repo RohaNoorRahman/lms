@@ -1,5 +1,5 @@
 <div>
-    <table class="w-full table-auto">
+    <table class="w-full tableDesign table-auto">
         <tr class="bg-gray-200">
             <th class="border px-4 py-2 text-left">Name</th>
             <th class="border px-4 py-2 text-left">Email</th>
@@ -26,7 +26,7 @@
                         </a>
 
                         <form onsubmit="return confirm('Are You Sure ?')" wire:submit.prevent="leadDelete({{$lead->id}})" action="">
-                            <button class="mt-1 text-red-400" type="submit">@include('./components.icons.trash')</button>
+                            <button wire:model.lazy class="mt-1 text-red-400" type="submit">@include('./components.icons.trash')</button>
                         </form>
                 </div>
             </td>

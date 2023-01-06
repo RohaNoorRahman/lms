@@ -23,13 +23,20 @@ class DatabaseSeeder extends Seeder
 
 
 
+        $defaultPermissions = ['lead-management','create-admin','user-management'];
+        foreach($defaultPermissions as $permission){
+            Permission::create([
+                'name' => $permission,
+            ]);
+        }
+
 
 
 
         $this->create_user_with_role('Super Admin','Super Admin','super-admin@lms.test');
         $this->create_user_with_role('communication','Communication Team','communication@lms.test');
         $teacher = $this->create_user_with_role('Teacher','Teacher','teacher@lms.test');
-        $teacher = $this->create_user_with_role('Leads','Leads','leads@lms.test');
+        $this->create_user_with_role('Leads','Leads','leads@lms.test');
 
 
         //create Lead
@@ -61,11 +68,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         if($type == 'Super Admin'){
-            $permission = Permission::create([
-                'name' => 'create-admin',
-            ]);
-            $role->givePermissionTo($permission);
 
+           $role->givePermissionTo(Permission::all());
+
+        }elseif($type == 'Leads'){
+            $role->givePermissionTo('lead-management');
         }
 
 

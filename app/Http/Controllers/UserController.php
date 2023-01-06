@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Flasher\Prime\FlasherInterface;
 
-class LeadController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +13,10 @@ class LeadController extends Controller
      */
     public function index()
     {
+        permission_check('user-management');
 
-       
-        permission_check('lead-management');
-        return view('lead.index');
-       
+        return view('user.index');
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +25,9 @@ class LeadController extends Controller
      */
     public function create()
     {
-        //
+        permission_check('user-management');
+
+        return view('user.create');
     }
 
     /**
@@ -63,8 +60,10 @@ class LeadController extends Controller
      */
     public function edit($id)
     {
-        return view('lead.edit',[
-            'lead_id' => $id,
+        permission_check('user-management');
+
+        return view('user.edit',[
+            'user_id' => $id,
         ]);
     }
 
