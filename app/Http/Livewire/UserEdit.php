@@ -12,7 +12,7 @@ class UserEdit extends Component
     public $name;
     public $email;
     public $user_id;
-    public $role;
+    public $selectedRole;
 
 
     
@@ -21,7 +21,18 @@ class UserEdit extends Component
         $this->user_id = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
+
+        if(isset($user->roles) && count($user->roles)>0){
+            $this->selectedRole = $user->roles['0']->name;
+        }
     }
+
+    protected $rules=[
+        'name' => 'required',
+        'email' => 'required',
+        'selectedRole' => 'required'
+    ];
+
     public function render()
     {
         $roles =Role::all();
@@ -30,26 +41,28 @@ class UserEdit extends Component
         ]);
     }
 
-    protected $rules=[
-        'name' => 'required',
-        'email' => 'required',
-        'role' => 'required|numeric|max:19'
-    ];
 
 
     public function submitForm(){
-        $user =User::findOrFail($this->user_id);
-        
-        
+
+
         $this->validate();
+
+        $user =User::with('roles')->findOrFail($this->user_id);
+        
+        
+        
         
         
         $user->name =$this->name;
         $user->email =$this->email;
-        $user->assignRole($this->role);
         $user->save();
 
-        $this->role = '';
+        if(isset($user->roles) && count($user->roles)){
+            $user->removeRole($user->roles[0]->name);
+        }
+
+        $user->assignRole($this->selectedRole);
         flash()->addSuccess('User Edit Successfully');
         
         return redirect()->route('user.index');

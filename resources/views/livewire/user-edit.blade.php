@@ -29,7 +29,7 @@
 
         <div class="flex-1 w-1/3 flex-col mx-auto py-4 flex items-center px-4">
             <label for="role" class="lms-label">User Role</label>
-            <select wire:model.lazy="role" id="role" class="lms-input">
+            <select wire:model.lazy="selectedRole" id="role" class="lms-input">
                 <option value="">Select Role</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
@@ -37,7 +37,7 @@
         
                 
             </select>
-            @error('role')
+            @error('selectedRole')
                    <span class="text-red-400 text-sm mt-1">{{$message}}</span>
                  @enderror
            </div>

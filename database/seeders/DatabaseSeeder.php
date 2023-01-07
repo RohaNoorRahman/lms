@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             'description'=> 'JavaScript is the worlds most popular programming languageJavaScript is the programming language of the Web',
             'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqdYIr0oEuqAvLHyZzux-ACsBcIfWSjsU_Eg&usqp=CAU',
             'user_id' => $teacher->id,
+            'price' =>500,
         ]);
 
         //curriculum Create
