@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 
 class Admission extends Component
@@ -16,6 +17,7 @@ class Admission extends Component
     public $leads =[];
     public $lead_id;
     public $course_id;
+    public $payment;
     public $selectedCourse;
     public function render()
     {
@@ -31,11 +33,15 @@ class Admission extends Component
         $this->leads =Lead::where('name','like','%' . $this->search . '%')
         ->orWhere('email','like','%' . $this->search . '%')
         ->orWhere('phone','like','%'.$this->search.'%')->get();
+
+        if ($this->leads->isEmpty()) {
+            flash()->addError('No Results Found');
+        }
     }
 
 
     public function courseSelected(){
-        $this->selectedCourse =Course::find($this->course_id);
+        $this->selectedCourse =Course::findOrFail($this->course_id);
     }
 
 
@@ -62,6 +68,15 @@ class Admission extends Component
             'quantity' => 1,
             'invoice_id' => $invoice->id,
         ]);
+
+        $this->selectedCourse->students()->attach($user->id);
+
+        if(!empty($this->payment)){
+            Payment::create([
+                'amount'=> $this->payment,
+                'invoice_id' => $invoice->id,
+            ]);
+        }
 
         $this->selectedCourse =null;
         $this->course_id =null;
