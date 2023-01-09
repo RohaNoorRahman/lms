@@ -17,5 +17,9 @@
 
 
 .tableDesign tr:nth-child(odd){
-    @apply bg-gray-200;
+    @apply bg-gray-100;
+}
+
+img{
+    @apply max-w-full rounded-md;
 }

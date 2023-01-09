@@ -11,6 +11,14 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'name',
+        'description',
+        'price',
+        'user_id',
+        'image',
+    ];
+
 
     public function curricullams(){
         return $this->hasMany(Curricullam::class,);

@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqdYIr0oEuqAvLHyZzux-ACsBcIfWSjsU_Eg&usqp=CAU',
             'user_id' => $teacher->id,
             'price' =>500,
+
         ]);
 
         //curriculum Create
