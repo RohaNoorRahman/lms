@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoice-index');
     Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoice-show');
 
-    Route::resource('course',CourseController::class,);
+    Route::resource('course',CourseController::class);
 });
 
 require __DIR__.'/auth.php';
