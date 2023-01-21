@@ -59,7 +59,7 @@
             @foreach ($days as $day)
 
             <div class="px-4 min-w-max flex items-center">
-                <input wire:model.lazy="selectedDays" type="checkbox" class="mr-2 cursor-pointer" value="{{$day}}" id="{{$day}}"><label for="{{$day}}" class="font-semibold text-gray-800 text-md cursor-pointer">{{ucfirst($day)}}</label>
+                <input wire:model.delay.long="selectedDays" type="checkbox" class="mr-2 cursor-pointer" value="{{$day}}" id="{{$day}}"><label for="{{$day}}" class="font-semibold text-gray-800 text-md cursor-pointer">{{ucfirst($day)}}</label>
 
             </div>
                 
@@ -83,8 +83,8 @@
                 <div class="">
                     @include('components.form-field',[
                     'name' => 'end_date',
-                    'label' => 'Time',
-                    'type' => 'time',
+                    'label' => 'End Date',
+                    'type' => 'date',
                     'placeholder' => 'Enter time',
                     'required' => 'required',
                 ])

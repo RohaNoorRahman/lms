@@ -5,7 +5,7 @@
                 {{ __('Course Details') }}
             </h2>
 
-            <a class="lms-btn" href="{{route('course.create')}}">Add Course</a>
+            <a class="lms-btn" href="{{route('course.create')}}" >Add Course</a>
         </div>
     </x-slot>
 
@@ -14,7 +14,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <livewire:course-show :course_id="$course_id"/>
+                    <livewire:course-show :course_id="$id" />
                 </div>
             </div>
         </div>

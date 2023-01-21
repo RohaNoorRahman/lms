@@ -5,6 +5,7 @@
             <th class="border px-4 py-2 text-left">Name</th>
             <th class="border px-4 py-2 text-left">About</th>
             <th class="border px-4 py-2 text-left">Price</th>
+            <th class="border px-4 py-2 text-left">Created</th>
             <th class="border px-4 py-2">Actions</th>
         </tr>
 
@@ -17,6 +18,7 @@
             <td class="border px-4 py-2">{{$course->name}}</td>
             <td class="border px-4 py-2 text-clip">{{$course->description}}</td>
             <td class="border px-4 py-2">${{number_format($course->price,2)}}</td>
+            <td class="border px-4 py-2">{{date('F j,Y',strtotime($course->created_at))}}</td>
             <td class="border px-4 py-2 text-center">
                 <div class="flex items-center justify-center">
                     <a class="text-red-400" href="{{route('course.edit',$course->id)}}">
@@ -28,7 +30,7 @@
                         </a>
 
                         <form onsubmit="return confirm('Are you sure ');" wire:submit.prevent="courseDelete({{$course->id}})" action="">
-                            <button wire:model.lazy class="mt-1 text-red-400" type="submit">@include('./components.icons.trash')</button>
+                            <button wire:model.delay.long class="mt-1 text-red-400" type="submit">@include('./components.icons.trash')</button>
                         </form>
                 </div>
             </td>

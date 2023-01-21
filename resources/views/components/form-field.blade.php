@@ -16,8 +16,8 @@
 @elseif ($type === 'time')
 
 <input wire:model.delay.long="{{$name}}" type="{{$type}}" id="{{$name}}"  class="lms-input" {{$required}} >
-
-
+@elseif ($type === 'date')
+<input wire:model.delay.long="{{$name}}" type="{{$type}}" id="{{$name}}"  class="lms-input" {{$required}}  >
 @endif
 
 
