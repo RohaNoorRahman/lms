@@ -32,10 +32,9 @@ class CourseController extends Controller
 
 
     public function show($id){
-        $course =Course::where('id', $id)->with('curricullams')->first();
 
         return view('course.singleCourse',[
-            'course' => $course,
+            'id' => $id,
         ]);
     }
 }
