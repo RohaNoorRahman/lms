@@ -21,26 +21,31 @@ class InvoiceController extends Controller
 
 
     public function show($id){
-        $Dbinvoice =Invoice::findOrFail($id);
+        // $Dbinvoice =Invoice::findOrFail($id);
 
 
 
-        $customer = new Buyer([
-            'name'          => $Dbinvoice->user->name,
-            'custom_fields' => [
-                'email' => $Dbinvoice->user->email,
-            ],
-        ]);
+        // $customer = new Buyer([
+        //     'name'          => $Dbinvoice->user->name,
+        //     'custom_fields' => [
+        //         'email' => $Dbinvoice->user->email,
+        //     ],
+        // ]);
 
-        $items=[];
-        foreach($Dbinvoice->items as $item){
-            $items[] =(new InvoiceItem())->title($item->name)->pricePerUnit($item->price);
-        }
+        // $items=[];
+        // foreach($Dbinvoice->items as $item){
+        //     $items[] =(new InvoiceItem())->title($item->name)->pricePerUnit($item->price);
+        // }
 
-        $invoice =\LaravelDaily\Invoices\Invoice::make()
-            ->buyer($customer)->currencySymbol('$')->currencyCode('USD')->addItems($items);
+        // $invoice =\LaravelDaily\Invoices\Invoice::make()
+        //     ->buyer($customer)->currencySymbol('$')->currencyCode('USD')->addItems($items);
             
 
-        return $invoice->stream();
+        // return $invoice->stream();
+
+
+        return view('user.invoice.show',[
+            'invoice_id' => $id,
+        ]);
     }
 }

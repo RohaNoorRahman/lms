@@ -23,7 +23,6 @@ class CourseController extends Controller
 
 
     public function edit($id){
-        $course =Course::findOrFail($id);
 
         return view('course.edit',[
             'course_id' => $id
@@ -32,10 +31,10 @@ class CourseController extends Controller
 
 
     public function show($id){
-        $course =Course::where('id', $id)->with('curricullams')->first();
+        
 
         return view('course.singleCourse',[
-            'course' => $course,
+            'id' => $id,
         ]);
     }
 }

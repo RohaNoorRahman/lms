@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CurricullamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoice-show');
 
     Route::resource('course',CourseController::class);
+    Route::resource('class',CurricullamController::class);
 });
 
 require __DIR__.'/auth.php';
