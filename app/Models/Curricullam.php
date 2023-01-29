@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HomeWork;
-use App\Models\Attenance;
+use App\Models\Attendance;
 use App\Models\Curricullam;
 use App\Models\Course;
 
@@ -28,5 +28,9 @@ class Curricullam extends Model
 
     public function course(){
         return $this->belongsTo(Course::class);
+    }
+
+    public function presentStudents(){
+        return Attendance::where('class_id',$this->id)->count();
     }
 }

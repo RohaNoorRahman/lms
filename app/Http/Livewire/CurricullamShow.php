@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Curricullam;
 use App\Models\Note;
+use App\Models\Attendance;
 
 class CurricullamShow extends Component
 {
@@ -18,6 +19,7 @@ class CurricullamShow extends Component
     public function render()
     {
         $curricullam =Curricullam::findOrFail($this->curricullam_id);
+
         return view('livewire.curricullam-show',[
             'curricullam' =>$curricullam,
             'notes'=>$curricullam->notes,
@@ -37,5 +39,14 @@ class CurricullamShow extends Component
 
         flash()->addSuccess('Note Addedd Successfully');
 
+    }
+
+    public function attendance($student_id){
+        Attendance::create([
+            'class_id' =>$this->curricullam_id,
+            'user_id' => $student_id,
+        ]);
+
+        flash()->addSuccess('Presentetion Added Successfully');
     }
 }

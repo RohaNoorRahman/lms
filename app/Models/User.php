@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Invoice;
+use App\Models\Attendance;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function invoices(){
         return $this->hasMany(Invoice::class,);
+    }
+
+    public function is_present($curricullam_id){
+        return Attendance::where('user_id',$this->id)->where('class_id',$curricullam_id)->exists();
     }
 }

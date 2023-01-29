@@ -19,8 +19,13 @@
         </div>
     </div>
 
-    <div class="my-4">
-        <h1 class="font-semibold text-xl mb-4">Class Name - {{$curricullam->name}}</h1>
+    <div class="my-4 ">
+        
+        <h1 class="font-semibold text-xl mb-4">Class Name: - {{$curricullam->name}}</h1>
+        <h1 class="font-semibold text-lg mb-4">Students: - <span class="text-green-800 ">Present - {{$curricullam->presentStudents()}} </span> | <span class="text-red-800 ">Absent - {{$curricullam->course->students()->count() - $curricullam->presentStudents()}} </span> </h1>
+            
+        
+        
         <table class="w-full table-auto">
             <tr>
                 <th class="border py-2 text-left px-4">Name</th>
@@ -32,7 +37,22 @@
                 <tr>
                     <td class="border py-2 px-4">{{$student->name}}</td>
                     <td class="border py-2 px-4">{{$student->email}}</td>
-                    <td class="border py-2 px-4"></td>
+                    <td class="border py-2 px-4">
+                        <div class="flex justify-center">
+                            @if ($student->is_present($curricullam->id))
+                            <div class="check">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                  </svg>
+                                  
+                            </div>
+                            @else
+                            <button wire:click="attendance({{$student->id}})" class="bg-green-600 inline-block px-3 py-1 rounded mr-2 text-white cursor-pointer">Present</button>
+                            @endif
+                            
+                            
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>
