@@ -50,6 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('class',CurricullamController::class);
     Route::resource('question', QuestionController::class);
     Route::resource('quiz' , QuizController::class);
+
+
+    Route::get('/quiz-show/{id}',[QuizController::class, 'QuizShow'])->name('quiz-show');
 });
 
 require __DIR__.'/auth.php';

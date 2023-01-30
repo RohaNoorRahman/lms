@@ -33,9 +33,18 @@ class QuizController extends Controller
 
     public function show(Quiz $quiz){
 
-        dd('test');
-        return redirect()->route('quiz.show',[
+       
+        return view('quiz.show',[
             'quiz' => $quiz,
+        ]);
+    }
+
+
+    public function quizShow($id){
+        $quiz = Quiz::findOrFail($id);
+
+        return view('quiz.quiz-show',[
+            'quiz'=> $quiz,
         ]);
     }
 }
