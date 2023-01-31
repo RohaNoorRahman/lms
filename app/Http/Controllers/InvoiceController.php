@@ -15,7 +15,7 @@ class InvoiceController extends Controller
 {
     public function index(){
 
-
+        
         return view('invoice.index');
     }
 
@@ -44,7 +44,16 @@ class InvoiceController extends Controller
         // return $invoice->stream();
 
 
+        
         return view('user.invoice.show',[
+            'invoice_id' => $id,
+        ]);
+    }
+
+
+    public function edit($id){
+
+        return view('user.invoice.edit',[
             'invoice_id' => $id,
         ]);
     }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-center font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Invoices') }}
+            {{ __('Invoices Item Edit') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <livewire:invoice-edit :invoice_id="$invoice_id" />
+                    <livewire:invoice-item-edit :invoice_id="$invoice_id" />
                 </div>
             </div>
         </div>
