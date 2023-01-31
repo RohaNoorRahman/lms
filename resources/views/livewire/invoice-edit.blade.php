@@ -22,7 +22,7 @@
                 <td class="px-4 border text-right py-2">${{number_format($item->price * $item->quantity , 2)}}</td>
                 <td class="px-4 border py-2">
                     <div class="flex justify-center">
-                        <a class="text-red-400" href="{{route('invoice-edit',$item->id)}}">
+                        <a class="text-red-400 mr-2" href="">
                             @include('./components.icons.edit')
                             </a>
                         <form onsubmit="return confirm('Are you sure ');" wire:submit.prevent="invoiceItemDelete({{$item->id}})" action="">
@@ -32,6 +32,15 @@
                 </td>
             </tr>
         @endforeach
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            
+            <td class="px-4 py-2 text right  text-right">Subtotal = ${{number_format($invoice->amount()['total'],2)}}</td>
+            <td></td>
+        </tr>
     </table>
 
 

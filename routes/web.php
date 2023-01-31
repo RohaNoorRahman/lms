@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admission', [AdmissionController::class, 'admission'])->name('admission');
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoice-index');
     Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoice-show');
-    Route::get('/invoices/{id}', [InvoiceController::class, 'edit'])->name('invoice-edit');
+    // Route::get('/invoices/{id}', [InvoiceController::class, 'edit'])->name('invoice-edit');
 
     Route::resource('course',CourseController::class);
     Route::resource('class',CurricullamController::class);

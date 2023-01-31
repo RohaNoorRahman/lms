@@ -19,6 +19,12 @@ class InvoiceController extends Controller
         return view('invoice.index');
     }
 
+    public function edit($id){
+
+        return view('user.invoice.edit',[
+            'invoice_id' => $id,
+        ]);
+    }
 
     public function show($id){
         // $Dbinvoice =Invoice::findOrFail($id);
@@ -51,10 +57,5 @@ class InvoiceController extends Controller
     }
 
 
-    public function edit($id){
-
-        return view('user.invoice.edit',[
-            'invoice_id' => $id,
-        ]);
-    }
+    
 }
