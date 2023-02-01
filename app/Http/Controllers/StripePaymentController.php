@@ -33,17 +33,22 @@ class StripePaymentController extends Controller
             
             $stripe = new StripeClient(env('STRIPE_SECRET'));
             
-            $token = $stripe->tokens->create([
-                'card'=>[
-                    'number' => $request->card_no,
-                    'name' => $request->name,
-                    'address_country' => $request->country,
-                    'address_city' => $request->city,
-                    'exp_month' => $request->card_exp_m,
-                    'exp_year' => $request->card_exp_y,
-                    'cvc' => $request->card_ccv,
-                ],
-            ]);
+            try{
+                $token = $stripe->tokens->create([
+                    'card'=>[
+                        'number' => $request->card_no,
+                        'name' => $request->name,
+                        'address_country' => $request->country,
+                        'address_city' => $request->city,
+                        'exp_month' => $request->card_exp_m,
+                        'exp_year' => $request->card_exp_y,
+                        'cvc' => $request->card_ccv,
+                    ],
+                ]);
+            }catch(\Exception $e){
+                flash()->addError('Invalid card Details');
+                return redirect()->back();
+            }
             
             $charge =$stripe->charges->create([
                 'amount' => intval($request->amount * 100),
@@ -55,6 +60,7 @@ class StripePaymentController extends Controller
             Payment::create([
                 'amount' => $request->amount,
                 'invoice_id' => $request->invoice_id,
+                'transection_id' => $charge->id,
             ]);
 
             flash()->addSuccess('Payment Success');

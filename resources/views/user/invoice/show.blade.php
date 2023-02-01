@@ -44,11 +44,11 @@
                         <div class="flex my-4">
                             <div class="w-full  flex-1 ">
                                 <label for="card_expire" class="d-block font-bold mb-2 cursor-pointer text-md text-gray-100">Expire Month</label>
-                                <input name="card_exp_m" type="text" placeholder="Card Expire Month" id="card_expire" class="lms-input">
+                                <input name="card_exp_m" type="number" placeholder="Expire Month" id="card_expire" class="lms-input">
                             </div>
                             <div class="w-full  ml-4 flex-1 ">
                                 <label for="card_expire_y" class="d-block font-bold mb-2 cursor-pointer text-md text-gray-100">Expire Year</label>
-                                <input name="card_exp_y" type="text" placeholder="Card Expire Month" id="card_expire_y" class="lms-input">
+                                <input name="card_exp_y" type="number" placeholder="Expire Year" id="card_expire_y" class="lms-input">
                             </div>
 
                         </div>

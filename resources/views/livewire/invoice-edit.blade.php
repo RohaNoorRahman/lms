@@ -115,6 +115,8 @@
         <tr>
             <th class="lms-cell-border">Date</th>
             <th class="lms-cell-border"> Amount</th>
+            <th class="lms-cell-border"> Transection Id</th>
+            <th class="lms-cell-border"> Options</th>
             <th class="lms-cell-border">Delete</th>
         </tr>
 
@@ -122,6 +124,9 @@
             <tr>
                 <td class="lms-cell-border text-center"> {{date('F j,Y g:i:a', strtotime($payment->created_at))}}</td>
                 <td class="lms-cell-border text-center">${{number_format($payment->amount,2)}}</td>
+                <td class="lms-cell-border text-left">{{$payment->transection_id}}</td>
+                <td class="border text-center"><button wire:click="refund({{$payment->id}})" class="inline-block text-sm font-bold px-4 py-2 bg-cyan-500 text-white rounded-md">Refund</button></td>
+
                 <td class="lms-cell-border text-center">
                     <form onsubmit="return confirm('Are you sure ');" wire:submit.prevent="paymentItemDelete({{$payment->id}})" action="">
                         <button wire:model.delay.long class="mt-1  text-red-400" type="submit">@include('./components.icons.trash')</button>

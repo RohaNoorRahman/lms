@@ -1,4 +1,5 @@
 <div>
+    
     <form class="flex items-center" wire:submit.prevent="search">
         <input class="lms-input" wire:model.lazy="search" type="text" placeholder="Search" required>
         <div class="ml-4">
@@ -44,5 +45,6 @@
         </form>
 
     @endif
+
 
 </div>

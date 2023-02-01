@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Payment;
+use Stripe\StripeClient; 
 
 class InvoiceEdit extends Component
 {
@@ -64,6 +65,8 @@ class InvoiceEdit extends Component
         $payment =Payment::findOrFail($id);
         $payment->delete();
         flash()->addSuccess("Payment Item Deleted");
+
+        return redirect()->back();
     }
 
 
@@ -80,6 +83,25 @@ class InvoiceEdit extends Component
         $item->delete();
 
         flash()->addSuccess('Item Deleted Success');
+
+        return redirect(route('invoice-show',$this->invoice_id));
+    }
+
+
+    public function refund($payment_id) {
+        $payment =Payment::findOrFail($payment_id);
+
+        if(strlen($payment->transection_id) === 12){
+            $payment->delete();
+            flash()->addSuccess('Payment Refund Success');
+        }else{
+            $stripe =new StripeClient(env('STRIPE_SECRET'));
+            $stripe->refunds->create([
+                'charge' => $payment->transection_id,
+            ]);
+            $payment->delete();
+            flash()->addSuccess('Payment Refund Success');
+        }
 
         return redirect(route('invoice-show',$this->invoice_id));
     }

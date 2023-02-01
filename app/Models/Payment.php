@@ -13,5 +13,6 @@ class Payment extends Model
     protected $fillable =[
         'amount',
         'invoice_id',
+        'transection_id',
     ];
 }

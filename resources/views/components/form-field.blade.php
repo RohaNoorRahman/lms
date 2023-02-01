@@ -9,7 +9,8 @@
 @elseif ($type === 'text')
 
 <input wire:model.delay.long="{{$name}}" type="{{$type}}" id="{{$name}}" placeholder="{{$placeholder}}" class="lms-input" {{$required}} >
-
+@elseif ($type === 'email')
+<input wire:model.delay.long="{{$name}}" type="{{$type}}" id="{{$name}}" placeholder="{{$placeholder}}" class="lms-input" {{$required}} >
 @elseif ($type === 'number')
 
 <input wire:model.delay.long="{{$name}}" type="{{$type}}" id="{{$name}}" placeholder="{{$placeholder}}" class="lms-input" {{$required}} >
