@@ -21,12 +21,12 @@
                 <td class="px-4 border text-center py-2">{{$item->quantity}}</td>
                 <td class="px-4 border text-right py-2">${{number_format($item->price * $item->quantity , 2)}}</td>
                 <td class="px-4 border py-2">
-                    <div class="flex justify-center">
+                    <div class="flex items-center justify-center">
                         <a class="text-red-400 mr-2" href="">
                             @include('./components.icons.edit')
                             </a>
                         <form onsubmit="return confirm('Are you sure ');" wire:submit.prevent="invoiceItemDelete({{$item->id}})" action="">
-                            <button wire:model.delay.long class="mt-1 text-red-400" type="submit">@include('./components.icons.trash')</button>
+                            <button wire:model.delay.long class="mt-1  text-red-400" type="submit">@include('./components.icons.trash')</button>
                         </form>
                     </div>
                 </td>
@@ -34,12 +34,21 @@
         @endforeach
 
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="lms-cell-border text-right font-bold text-gray-700" colspan="3">Total</td>
+            <td class="lms-cell-border text-left font-bold text-gray-700" colspan="2">${{number_format($invoice->amount()['total'],2)}}</td>
             
-            <td class="px-4 py-2 text right  text-right">Subtotal = ${{number_format($invoice->amount()['total'],2)}}</td>
-            <td></td>
+        </tr>
+
+        <tr>
+            <td class="lms-cell-border text-right font-bold text-gray-700" colspan="3">Paid</td>
+            <td class="lms-cell-border text-left font-bold text-gray-700" colspan="2">- ${{number_format($invoice->amount()['paid'],2)}}</td>
+            
+        </tr>
+
+        <tr>
+            <td class="lms-cell-border text-right font-bold text-gray-700" colspan="3">Due</td>
+            <td class="lms-cell-border text-left font-bold text-gray-700" colspan="2">${{number_format($invoice->amount()['due'],2)}}</td>
+            
         </tr>
     </table>
 
@@ -97,4 +106,35 @@
     @else
     <button class="underline mb-4 text-lg text-gray-800" wire:click="addNewItem">Add Item</button>
     @endif
+
+
+    @if (count($invoice->payment)>0)
+    <h1 class="text-lg font-bold text-gray-600 text-center mb-4">Payments Informaiton</h1>
+
+    <table class="w-full tableDesign my-6 table-auto">
+        <tr>
+            <th class="lms-cell-border">Date</th>
+            <th class="lms-cell-border"> Amount</th>
+            <th class="lms-cell-border">Delete</th>
+        </tr>
+
+        @foreach ($invoice->payment as $payment)
+            <tr>
+                <td class="lms-cell-border text-center"> {{date('F j,Y g:i:a', strtotime($payment->created_at))}}</td>
+                <td class="lms-cell-border text-center">${{number_format($payment->amount,2)}}</td>
+                <td class="lms-cell-border text-center">
+                    <form onsubmit="return confirm('Are you sure ');" wire:submit.prevent="paymentItemDelete({{$payment->id}})" action="">
+                        <button wire:model.delay.long class="mt-1  text-red-400" type="submit">@include('./components.icons.trash')</button>
+                    </form>
+                </td>
+            </tr>
+
+        @endforeach
+    </table>
+
+    @else
+    <h1 class="text-lg font-bold text-gray-600 text-center mb-4">Payments Now</h1>
+
+    @endif
+    
 </div>

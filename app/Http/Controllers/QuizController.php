@@ -47,4 +47,8 @@ class QuizController extends Controller
             'quiz'=> $quiz,
         ]);
     }
+
+    public function edit($id){
+        return view('quiz.edit');
+    }
 }

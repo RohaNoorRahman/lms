@@ -23,3 +23,7 @@
 img{
     @apply max-w-full rounded-md;
 }
+
+.lms-cell-border{
+    @apply px-4 py-2 border border-gray-200;
+}

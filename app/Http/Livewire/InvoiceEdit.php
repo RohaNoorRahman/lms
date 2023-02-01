@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Payment;
 
 class InvoiceEdit extends Component
 {
@@ -56,6 +57,13 @@ class InvoiceEdit extends Component
         flash()->addSuccess("Item Addedd Success");
 
         return redirect(route('invoice-show',$this->invoice_id));
+    }
+
+
+    public function paymentItemDelete($id){
+        $payment =Payment::findOrFail($id);
+        $payment->delete();
+        flash()->addSuccess("Payment Item Deleted");
     }
 
 

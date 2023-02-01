@@ -11,6 +11,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CurricullamController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/quiz-show/{id}',[QuizController::class, 'QuizShow'])->name('quiz-show');
+    Route::post('/stripe-payment',[StripePaymentController::class,'stripePayment'])->name('stripe-payment');
 });
 
 require __DIR__.'/auth.php';

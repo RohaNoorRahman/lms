@@ -52,7 +52,7 @@ class InvoiceController extends Controller
 
         
         return view('user.invoice.show',[
-            'invoice_id' => $id,
+            'invoice' =>Invoice::findOrFail($id),
         ]);
     }
 
